@@ -26,11 +26,10 @@ jobs:
         run: poetry run flake8 --config ./.configure/flake8
       - name: Hello world action step
         id: hello
-        uses: actions/hello-world-docker-action@v2
+        uses: actions/postgres:15-alpine
         with:
-            who-to-greet: 'Mona the Octocat'
-            # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          POSTGRES_DB: "test_db"
+          POSTGRES_USER: "test_db"
+          POSTGRES_PASSWORD: "test_db"
       - name: run pytest
         run: poetry run pytest src/test
