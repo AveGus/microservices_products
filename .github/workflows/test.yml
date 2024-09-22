@@ -1,39 +1,21 @@
-name: Use Python Poetry cache on GitHub Actions workflow
+name: Python package
 
-on:
-  push:
-    branches:
-      - main
-
-env:
-  PYTHON_VERSION: "3.11"
-  POETRY_VERSION: "1.4.2"
-  POETRY_URL: https://install.python-poetry.org
+on: [push]
 
 jobs:
-  use_cache:
+  build:
+
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: "3.12"
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-        id: setup_python
-      - name: Cache Poetry cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pypoetry
-          key: poetry-cache-${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}-${{ env.POETRY_VERSION }}
-      - name: Cache Packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.local
-          key: poetry-local-${{ runner.os }}-${{ steps.setup_python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('.github/workflows/*.yml') }}
-      - name: Install Poetry ${{ env.POETRY_VERSION }}
-        run: |
-          curl -sSL ${{ env.POETRY_URL }} | python - --version ${{ env.POETRY_VERSION }}
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-      - name: Install Dependencies
-        run: poetry install
+          python-version: ${{ matrix.python-version }}
+      # You can test your matrix by printing the current Python version
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
