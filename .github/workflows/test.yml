@@ -23,3 +23,5 @@ jobs:
         run: pip install poetry
       - name: poetry init
         run: poetry install
+      - name: start linter
+        run: flake8 --config .configure/flake8
