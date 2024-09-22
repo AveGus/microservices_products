@@ -24,8 +24,3 @@ jobs:
         run: poetry install
       - name: flake8 Lint
         run: poetry run flake8
-        with:
-          ignore: "F401"
-          max-line-length: "100"
-          path: "src"
-          plugins: "flake8-bugbear==22.1.11 flake8-black"
