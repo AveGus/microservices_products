@@ -24,4 +24,4 @@ jobs:
       - name: poetry init
         run: poetry install
       - name: start linter
-        run: flake8 --config .configure/flake8
+        run: flake8 --config ./.configure/flake8
