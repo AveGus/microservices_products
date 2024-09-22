@@ -1,4 +1,3 @@
-from alembic import op
 from sqlalchemy import Column, VARCHAR, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from services.database import Base

@@ -1,10 +1,10 @@
-from sqlalchemy import select, exists
+from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError, NoResultFound
 from schemas.product import ProductCreate
-from fastapi import Depends, HTTPException
+from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from models import Product, ProductType
-from services.database import get_async_session, Base
+from models import Product
+from services.database import get_async_session
 
 
 async def get_all_products(

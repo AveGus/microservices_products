@@ -1,9 +1,5 @@
-import json
-
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-
-from models import ProductType
 from services.products import get_product_by_id as get_product_by_id_service
 from services.products import get_products_by_type as get_products_by_type_service
 from schemas.product import ProductCreate, Product

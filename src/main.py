@@ -1,8 +1,5 @@
 from api.products import router as products_router
-from fastapi import FastAPI, Request, status
-from fastapi.encoders import jsonable_encoder
-from fastapi.exceptions import RequestValidationError, ResponseValidationError
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI
 app = FastAPI()
 
 
