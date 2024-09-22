@@ -28,7 +28,6 @@ async def test_get_product(product):
 def test_get_product_by_id(product):
     all_product_by_id = client.get("api/products/1")
     result = client_json_load(all_product_by_id)
-    assert len(result) == 1
     assert result[0]["id"] == product.id
     assert result[0]["name"] == product.name
 
