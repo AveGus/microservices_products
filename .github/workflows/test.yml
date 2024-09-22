@@ -24,3 +24,5 @@ jobs:
         run: poetry install
       - name: flake8 Lint
         run: poetry run flake8 --config ./.configure/flake8
+      - name: run pytest
+        run: poetry run pytest src/test
