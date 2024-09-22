@@ -23,8 +23,6 @@ jobs:
         run: pip install poetry
       - name: poetry init
         run: poetry install
-      - name: start linter
-        run: flake8 --config ./.configure/flake8
 
   flake8-lint:
     runs-on: ubuntu-latest
@@ -40,7 +38,6 @@ jobs:
         uses: py-actions/flake8@v2
         with:
           ignore: "F401"
-          exclude: "src/ignoreme.py"
           max-line-length: "100"
           path: "src"
           plugins: "flake8-bugbear==22.1.11 flake8-black"
