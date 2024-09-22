@@ -24,9 +24,6 @@ jobs:
         run: poetry install
       - name: flake8 Lint
         run: poetry run flake8 --config ./.configure/flake8
-      - name: run pytest
-        run: poetry run pytest src/test
-
       - name: Hello world action step
         id: hello
         uses: actions/hello-world-docker-action@v2
@@ -35,3 +32,5 @@ jobs:
             # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: run pytest
+        run: poetry run pytest src/test
