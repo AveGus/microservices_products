@@ -17,7 +17,6 @@ jobs:
           POSTGRES_USER: test_db
         ports:
           - 5432:5432
-        # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -38,12 +37,5 @@ jobs:
         run: poetry install
       - name: flake8 Lint
         run: poetry run flake8 --config ./.configure/flake8
-#      - name: Hello world action step
-#        id: hello
-#        uses: actions/postgres@15-alpine
-#        with:
-#          POSTGRES_DB: "test_db"
-#          POSTGRES_USER: "test_db"
-#          POSTGRES_PASSWORD: "test_db"
       - name: run pytest
         run: poetry run pytest src/test
