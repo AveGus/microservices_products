@@ -34,7 +34,7 @@ jobs:
       - name: install poetry
         run: pip install poetry
       - name: poetry init
-        run: poetry install
+        run: poetry install --no-root
       - name: flake8 Lint
         run: poetry run flake8 --config ./.configure/flake8
       - name: run pytest
